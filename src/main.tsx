@@ -5,12 +5,10 @@ import { createGlobalStyle } from 'styled-components';
 
 import App from './App'
 
-import './index.css'
-
 const GlobalStyles = createGlobalStyle`
   :root {
     font-size: 16px;
-    color-scheme: light dark;
+    // color-scheme: light dark;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
