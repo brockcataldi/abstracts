@@ -1,8 +1,8 @@
-import { atom } from 'recoil';
+import { atom } from 'recoil'
 
 const projectNameAtom = atom({
     key: 'projectNameAtom',
-    default: 'New Project'
-});
+    default: 'New Project',
+})
 
-export { projectNameAtom };
+export { projectNameAtom }

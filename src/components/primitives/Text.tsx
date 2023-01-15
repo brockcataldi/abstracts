@@ -1,37 +1,42 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-interface ITextProps{
+interface ITextProps {
     reader?: boolean
 }
 
 const Text = styled.p<ITextProps>`
-
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     font-weight: 400;
 
-    h1&, h2&, h3&, h4&, h5&, h6& {
+    h1&,
+    h2&,
+    h3&,
+    h4&,
+    h5&,
+    h6& {
         font-weight: 800;
         text-transform: lowercase;
         margin: 0 0 1rem 0;
     }
 
-    pre&{
+    pre& {
         font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
         line-height: 1.5;
     }
 
-    p&{
+    p& {
         line-height: 1.5;
     }
 
-    strong&{
+    strong& {
         font-weight: 800;
     }
 
     ${(props) => {
-        const { reader } = props;
+        const { reader } = props
 
-        if(reader === true){
+        if (reader === true) {
             return `
                 position: absolute;
                 width: 1px;
@@ -41,10 +46,10 @@ const Text = styled.p<ITextProps>`
                 overflow: hidden;
                 clip: rect(0, 0, 0, 0);
                 border: 0;
-            `;
+            `
         }
     }}
-`;
+`
 
 export type { ITextProps }
-export default Text;
+export default Text

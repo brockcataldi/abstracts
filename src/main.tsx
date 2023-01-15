@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RecoilRoot } from 'recoil'
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
-import Root from './Root';
+import Root from './Root'
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -18,13 +18,13 @@ const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
   }
-`;
+`
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <GlobalStyles />
-      <Root />
-    </RecoilRoot>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <RecoilRoot>
+            <GlobalStyles />
+            <Root />
+        </RecoilRoot>
+    </React.StrictMode>,
 )

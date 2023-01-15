@@ -1,14 +1,16 @@
-import { Link as A, LinkProps } from "react-router-dom";
-import styled from "styled-components";
-import Descriptor, { IDescriptorProps } from "../primitives/Descriptor";
+import React from 'react'
+import { Link as A } from 'react-router-dom'
+import styled from 'styled-components'
+import Descriptor, { IDescriptorProps } from '../primitives/Descriptor'
 
-interface IButtonLinkProps extends LinkProps, IDescriptorProps{
-    label: string;
-    outline?: boolean;
-} 
+interface IButtonLinkProps extends IDescriptorProps {
+    label: string
+    outline?: boolean
+    to: string
+}
 
-interface IButtonLinkWrapperProps{
-    outline: boolean;
+interface IButtonLinkWrapperProps {
+    outline: boolean
 }
 
 const ButtonLinkWrapper = styled(A)<IButtonLinkWrapperProps>`
@@ -19,20 +21,22 @@ const ButtonLinkWrapper = styled(A)<IButtonLinkWrapperProps>`
     place-items: center;
 
     ${(props) => {
-        const { outline } = props;
+        const { outline } = props
 
-        if(outline === true){
+        if (outline === true) {
             return `border: 2px solid black;`
         }
     }}
-`;
+`
 
 const ButtonLink = ({ to, label, icon, outline = true }: IButtonLinkProps) => {
-    return (<ButtonLinkWrapper to={to} outline={outline}>
-        <Descriptor icon={icon} label={label} />
-    </ButtonLinkWrapper>);
+    return (
+        <ButtonLinkWrapper to={to} outline={outline}>
+            <Descriptor icon={icon} label={label} />
+        </ButtonLinkWrapper>
+    )
 }
 
-export type { IButtonLinkProps };
-export default ButtonLink;
-export { ButtonLinkWrapper };
+export type { IButtonLinkProps }
+export default ButtonLink
+export { ButtonLinkWrapper }

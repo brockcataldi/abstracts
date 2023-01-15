@@ -1,9 +1,9 @@
-import { FunctionComponent, ReactElement } from "react";
+import React, { FunctionComponent, ReactElement } from 'react'
 
-import styled from "styled-components";
+import styled from 'styled-components'
 
-interface IAsideProps{
-    children: ReactElement | ReactElement[];
+interface IAsideProps {
+    children: ReactElement | ReactElement[]
 }
 
 const AsideWrapper = styled.aside`
@@ -11,14 +11,12 @@ const AsideWrapper = styled.aside`
     border-right: 1px solid black;
     height: calc(100vh - 4rem);
     padding: 2rem;
-`;
+`
 
-const Aside: FunctionComponent<IAsideProps> = ({children} : IAsideProps) => {
-    return (<AsideWrapper>
-        { children }
-    </AsideWrapper>);
-};
+const Aside: FunctionComponent<IAsideProps> = ({ children }: IAsideProps) => {
+    return <AsideWrapper>{children}</AsideWrapper>
+}
 
-export type { IAsideProps };
-export default Aside;
-export { AsideWrapper };
+export type { IAsideProps }
+export default Aside
+export { AsideWrapper }
