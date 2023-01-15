@@ -3,7 +3,7 @@ import React, { FunctionComponent, ReactElement } from 'react'
 import styled from 'styled-components'
 
 interface IAsideProps {
-    children: ReactElement | ReactElement[]
+    children: ReactElement | ReactElement[] | null
 }
 
 const AsideWrapper = styled.aside`

@@ -6,13 +6,33 @@ import Descriptor, { IDescriptorProps } from './Descriptor'
 interface IFieldProps extends IDescriptorProps {
     id: string
     children: ReactElement | ReactElement[]
+    className?: string;
 }
 
-const FieldWrapper = styled.div``
+interface IFieldLabelProps {
+    reader?: boolean
+}
 
-const FieldLabel = styled.label`
-    display: block;
+const FieldWrapper = styled.div`
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
 `
+
+const FieldLabel = styled.label<IFieldLabelProps>`
+    display: block;
+    ${(props) => {
+        const { reader } = props
+
+        if (reader !== true) {
+            return `margin-bottom: 0.5rem;`
+        }else{
+            return `height: 1px`;
+        }
+    }}
+`
+
+const FieldInput = styled.div``;
 
 const Field: FunctionComponent<IFieldProps> = ({
     id,
@@ -20,15 +40,20 @@ const Field: FunctionComponent<IFieldProps> = ({
     label,
     reader,
     icon,
+    className
 }: IFieldProps) => {
     return (
-        <FieldWrapper>
-            <FieldLabel htmlFor={id}>
+        <FieldWrapper className={className}>
+            <FieldLabel htmlFor={id} reader={reader}>
                 <Descriptor icon={icon} label={label} reader={reader} />
             </FieldLabel>
-            {children}
+            <FieldInput>
+                {children}
+            </FieldInput>
         </FieldWrapper>
     )
 }
 
+export type { IFieldProps }
 export default Field
+export { FieldWrapper, FieldLabel, FieldInput }
