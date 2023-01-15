@@ -1,12 +1,16 @@
 import styled from 'styled-components'
+import { Outlet } from 'react-router-dom'
 
 const AppWrapper = styled.div``;
+const AppOutlet = styled.main``;
 
 const App = () => {
 
   return (
     <AppWrapper>
-      <h1>Hello World</h1>
+      <AppOutlet>
+        <Outlet />
+      </AppOutlet>
     </AppWrapper>
   )
 }
