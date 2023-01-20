@@ -1,11 +1,10 @@
-interface IScaleBounds{
+interface IScaleBounds {
     upper: number
     lower: number
 }
 
 const between = (bounds: IScaleBounds): number[] => {
-
-    const { lower, upper } = bounds;
+    const { lower, upper } = bounds
 
     const value = []
 

@@ -6,7 +6,7 @@ import Descriptor, { IDescriptorProps } from './Descriptor'
 interface IFieldProps extends IDescriptorProps {
     id: string
     children: ReactElement | ReactElement[]
-    className?: string;
+    className?: string
 }
 
 interface IFieldLabelProps {
@@ -26,13 +26,13 @@ const FieldLabel = styled.label<IFieldLabelProps>`
 
         if (reader !== true) {
             return `margin-bottom: 0.5rem;`
-        }else{
-            return `height: 1px`;
+        } else {
+            return `height: 1px`
         }
     }}
 `
 
-const FieldInput = styled.div``;
+const FieldInput = styled.div``
 
 const Field: FunctionComponent<IFieldProps> = ({
     id,
@@ -40,16 +40,14 @@ const Field: FunctionComponent<IFieldProps> = ({
     label,
     reader,
     icon,
-    className
+    className,
 }: IFieldProps) => {
     return (
         <FieldWrapper className={className}>
             <FieldLabel htmlFor={id} reader={reader}>
                 <Descriptor icon={icon} label={label} reader={reader} />
             </FieldLabel>
-            <FieldInput>
-                {children}
-            </FieldInput>
+            <FieldInput>{children}</FieldInput>
         </FieldWrapper>
     )
 }

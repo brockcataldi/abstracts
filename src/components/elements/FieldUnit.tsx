@@ -17,7 +17,7 @@ interface IFieldUnit {
 }
 
 const FieldUnitField = styled(Field)`
-    & > ${FieldInput}{
+    & > ${FieldInput} {
         display: grid;
         grid-template-columns: 1fr 96px;
     }
@@ -26,20 +26,19 @@ const FieldUnitField = styled(Field)`
         margin: 0;
     }
 
-    & ${Input}{
+    & ${Input} {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
 
-    & ${Select}{
+    & ${Select} {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         border-left: none;
     }
-`;
+`
 
 const FieldUnit = ({ label, id, value, onChange }: IFieldUnit) => {
-
     const onChangeValue = (event: ChangeEvent<HTMLInputElement>) => {
         onChange({ ...value, value: Number(event.target.value) })
     }
@@ -50,7 +49,6 @@ const FieldUnit = ({ label, id, value, onChange }: IFieldUnit) => {
 
     return (
         <FieldUnitField label={label} id={id}>
-
             <FieldNumber
                 label={`${label} Value`}
                 value={value.value}
@@ -69,7 +67,6 @@ const FieldUnit = ({ label, id, value, onChange }: IFieldUnit) => {
                 <option value={'rem'}>rem</option>
                 <option value={'em'}>em</option>
             </FieldSelect>
-
         </FieldUnitField>
     )
 }

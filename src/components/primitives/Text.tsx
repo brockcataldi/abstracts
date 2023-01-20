@@ -25,6 +25,10 @@ const Text = styled.p<ITextProps>`
         line-height: 1.5;
     }
 
+    label& {
+        text-transform: lowercase;
+    }
+
     p& {
         line-height: 1.5;
     }

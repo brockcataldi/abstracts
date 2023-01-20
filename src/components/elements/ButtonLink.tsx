@@ -5,33 +5,23 @@ import Descriptor, { IDescriptorProps } from '../primitives/Descriptor'
 
 interface IButtonLinkProps extends IDescriptorProps {
     label: string
-    outline?: boolean
     to: string
+    className?: string
 }
 
-interface IButtonLinkWrapperProps {
-    outline: boolean
-}
-
-const ButtonLinkWrapper = styled(A)<IButtonLinkWrapperProps>`
+const ButtonLinkWrapper = styled(A)`
     text-decoration: none;
     padding: 0.25rem 1rem;
     border-radius: 0.25rem;
     display: inline-grid;
     place-items: center;
-
-    ${(props) => {
-        const { outline } = props
-
-        if (outline === true) {
-            return `border: 2px solid black;`
-        }
-    }}
+    background-color: white;
+    border: 2px solid black;
 `
 
-const ButtonLink = ({ to, label, icon, outline = true }: IButtonLinkProps) => {
+const ButtonLink = ({ to, label, icon, className }: IButtonLinkProps) => {
     return (
-        <ButtonLinkWrapper to={to} outline={outline}>
+        <ButtonLinkWrapper className={className} to={to}>
             <Descriptor icon={icon} label={label} />
         </ButtonLinkWrapper>
     )

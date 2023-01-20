@@ -3,8 +3,13 @@ import IScale from '../models/IScale'
 import IScaleBounds from '../models/IScaleBounds'
 
 export const projectNameAtom = atom<string>({
-    key: 'projectNameAtom',
+    key: 'projectName',
     default: 'New Project',
+})
+
+export const projectLabelTypeAtom = atom<string>({
+    key: 'projectLabelType',
+    default: 'incremental',
 })
 
 export const scalesAtomFamily = atomFamily<IScale, string>({
@@ -15,10 +20,20 @@ export const scalesAtomFamily = atomFamily<IScale, string>({
     },
 })
 
-export const scalesBoundsAtomFamily = atomFamily<IScaleBounds, string>({
-    key: 'scalesBounds',
+export const scaleBoundsAtomFamily = atomFamily<IScaleBounds, string>({
+    key: 'scaleBounds',
     default: {
         upper: 8,
-        lower: -1
-    }
-});
+        lower: -1,
+    },
+})
+
+export const scaleSelectionsAtomFamily = atomFamily<number[], string>({
+    key: 'scaleSelections',
+    default: [0],
+})
+
+export const scaleMidpointsAtomsFamily = atomFamily<number, string>({
+    key: 'scaleMidpoints',
+    default: 0,
+})

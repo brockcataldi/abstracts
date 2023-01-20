@@ -2,10 +2,11 @@ import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
 
 import { useRecoilState } from 'recoil'
-import { projectNameAtom } from '../recoil/store'
+import { projectLabelTypeAtom, projectNameAtom } from '../recoil/store'
 
 import ButtonLink from '../components/elements/ButtonLink'
 import Text from '../components/primitives/Text'
+import FieldSelect from '../components/elements/FieldSelect'
 
 import slugify from '../utilities/slugify'
 
@@ -48,9 +49,14 @@ const DashboardRouteHeader = styled.header`
 
 const DashboardRoute = () => {
     const [projectName, setProjectName] = useRecoilState(projectNameAtom)
+    const [projectLabelType, setProjectLabelType] = useRecoilState(projectLabelTypeAtom)
 
     const onChangeProjectName = (event: ChangeEvent<HTMLInputElement>) => {
         setProjectName(event.target.value)
+    }
+
+    const onChangeProjectLabelType = (event: ChangeEvent<HTMLSelectElement>) => {
+        setProjectLabelType(event.target.value)
     }
 
     return (
@@ -62,11 +68,22 @@ const DashboardRoute = () => {
                         {slugify(projectName)}.abstracts
                     </DashboardRouteFileName>
                 </DashboardRouteHeader>
-
                 <Text as={'p'}>
                     [I am not 100% sure how I want to design this, so it&apos;ll be like this for a
                     while]
                 </Text>
+
+                <Text as={'h2'}>Settings</Text>
+                <FieldSelect
+                    id={'project-label-type'}
+                    label={'Project Label Type'}
+                    value={projectLabelType}
+                    onChange={onChangeProjectLabelType}
+                >
+                    <option value={'incremental'}>Incremental</option>
+                    <option value={'hundreds'}>Hundreds</option>
+                    <option value={'tee-shirt'}>Tee Shirt</option>
+                </FieldSelect>
 
                 <Text as={'h2'}>Spacing</Text>
                 <ButtonLink to={'/scale/space'} label={'Scale'} />

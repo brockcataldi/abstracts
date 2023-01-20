@@ -6,7 +6,7 @@ const Select = styled.select`
     background-color: white;
     border: 2px solid black;
     color: black;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     font-size: 1rem;
     padding: 0.5rem 1rem;
     height: 36px;

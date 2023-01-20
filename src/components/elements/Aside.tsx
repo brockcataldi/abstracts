@@ -7,10 +7,12 @@ interface IAsideProps {
 }
 
 const AsideWrapper = styled.aside`
-    width: calc(300px - 4rem);
+    width: 300px;
     border-right: 1px solid black;
-    height: calc(100vh - 4rem);
+    height: 100vh;
     padding: 2rem;
+    box-sizing: border-box;
+    position: fixed;
 `
 
 const Aside: FunctionComponent<IAsideProps> = ({ children }: IAsideProps) => {
