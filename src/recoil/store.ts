@@ -12,28 +12,46 @@ export const projectLabelTypeAtom = atom<string>({
     default: 'incremental',
 })
 
+export const projectPreferredUnitAtom = atom<string>({
+    key: 'projectPreferredUnit',
+    default: 'px',
+})
+
+export const projectRootSizeAtom = atom<number>({
+    key: 'projectRootSize',
+    default: 16,
+})
+
+export const scaleAtomDefault: IScale = {
+    base: { value: 16, suffix: 'px' },
+    ratio: 1.2,
+}
+
 export const scalesAtomFamily = atomFamily<IScale, string>({
     key: 'scales',
-    default: {
-        base: { value: 16, suffix: 'px' },
-        ratio: 1.2,
-    },
+    default: scaleAtomDefault,
 })
+
+export const scaleBoundsAtomDefault: IScaleBounds = {
+    upper: 8,
+    lower: -1,
+}
 
 export const scaleBoundsAtomFamily = atomFamily<IScaleBounds, string>({
     key: 'scaleBounds',
-    default: {
-        upper: 8,
-        lower: -1,
-    },
+    default: scaleBoundsAtomDefault,
 })
+
+export const scaleSelectionsAtomDefault: number[] = [0]
 
 export const scaleSelectionsAtomFamily = atomFamily<number[], string>({
     key: 'scaleSelections',
-    default: [0],
+    default: scaleSelectionsAtomDefault,
 })
 
-export const scaleMidpointsAtomsFamily = atomFamily<number, string>({
+export const scaleMidpointAtomDefault = 0
+
+export const scaleMidpointsAtomFamily = atomFamily<number, string>({
     key: 'scaleMidpoints',
-    default: 0,
+    default: scaleMidpointAtomDefault,
 })

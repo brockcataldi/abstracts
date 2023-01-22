@@ -11,12 +11,13 @@ interface IButtonLinkProps extends IDescriptorProps {
 
 const ButtonLinkWrapper = styled(A)`
     text-decoration: none;
-    padding: 0.25rem 1rem;
-    border-radius: 0.25rem;
+    padding: 8px 16px;
+    border-radius: 4px;
     display: inline-grid;
     place-items: center;
     background-color: white;
     border: 2px solid black;
+    font-size: 16px;
 `
 
 const ButtonLink = ({ to, label, icon, className }: IButtonLinkProps) => {

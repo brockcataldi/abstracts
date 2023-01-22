@@ -6,17 +6,17 @@ import Text from '../components/primitives/Text'
 import IGoogleFont, { fromURL, toURL } from '../models/IGoogleFont'
 
 const InstallRouteWrapper = styled.div`
-    margin: 4rem auto;
+    margin: 64px auto;
     max-width: 750px;
 `
 
 const InstallTextArea = styled.textarea`
     width: 100%;
     height: 260px;
-    padding: 1rem;
+    padding: 16px;
     box-sizing: border-box;
     border: 1px solid black;
-    border-radius: 0.5rem;
+    border-radius: 8px;
     background-color: white;
     resize: none;
     font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;

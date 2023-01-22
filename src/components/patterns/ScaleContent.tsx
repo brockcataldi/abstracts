@@ -6,16 +6,17 @@ import {
     scalesAtomFamily,
     scaleBoundsAtomFamily,
     scaleSelectionsAtomFamily,
-    scaleMidpointsAtomsFamily,
+    scaleMidpointsAtomFamily,
     projectLabelTypeAtom,
+    projectRootSizeAtom,
 } from '../../recoil/store'
 
 import { calculate, tag } from '../../models/IScale'
 import { between } from '../../models/IScaleBounds'
+import { toPX } from '../../models/IUnit'
 
 import Button from '../elements/Button'
 import ScaleEntry from './ScaleEntry'
-
 import { Plus } from '../../assets/icons'
 
 interface IScaleContentProps {
@@ -23,7 +24,7 @@ interface IScaleContentProps {
 }
 
 const ScaleContentWrapper = styled.article`
-    padding: 2rem;
+    padding: 32px;
     width: calc(100% - 300px);
     height: 100%;
     box-sizing: border-box;
@@ -33,9 +34,10 @@ const ScaleContentWrapper = styled.article`
 const ScaleContent = ({ variant }: IScaleContentProps) => {
     const projectLabelType = useRecoilValue(projectLabelTypeAtom)
     const scale = useRecoilValue(scalesAtomFamily(variant))
+    const rootSize = useRecoilValue(projectRootSizeAtom)
 
     const [scaleBounds, setScaleBounds] = useRecoilState(scaleBoundsAtomFamily(variant))
-    const [scaleMidpoint, setScaleMidpoint] = useRecoilState(scaleMidpointsAtomsFamily(variant))
+    const [scaleMidpoint, setScaleMidpoint] = useRecoilState(scaleMidpointsAtomFamily(variant))
     const [scaleSelections, setScaleSelections] = useRecoilState(scaleSelectionsAtomFamily(variant))
 
     const onClickUpperBound = (): void => {
@@ -70,6 +72,8 @@ const ScaleContent = ({ variant }: IScaleContentProps) => {
             />
             {between(scaleBounds).map((value: number, index: number) => {
                 const label = tag(value, scaleSelections, scaleMidpoint, projectLabelType)
+                const size = calculate(value, scale)
+
                 return (
                     <ScaleEntry
                         key={index}
@@ -77,7 +81,12 @@ const ScaleContent = ({ variant }: IScaleContentProps) => {
                         type={variant}
                         index={index}
                         label={label}
-                        value={calculate(value, scale)}
+                        value={size}
+                        absoluteValue={
+                            scale.base.suffix === 'px'
+                                ? undefined
+                                : toPX(size, { value: rootSize, suffix: 'px' })
+                        }
                         checked={scaleSelections.includes(value)}
                         midpoint={value === scaleMidpoint}
                         onChange={onChangeSelection}

@@ -11,8 +11,8 @@ const ButtonWrapper = styled.button`
     -webkit-appearance: none;
     appearance: none;
     text-decoration: none;
-    padding: 0.25rem 1rem;
-    border-radius: 0.25rem;
+    padding: 8px 16px;
+    border-radius: 4px;
     display: inline-grid;
     place-items: center;
     background-color: white;

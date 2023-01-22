@@ -6,11 +6,13 @@ const Select = styled.select`
     background-color: white;
     border: 2px solid black;
     color: black;
-    border-radius: 0.25rem;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 8px 16px;
     height: 36px;
     width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 `
 
 export default Select

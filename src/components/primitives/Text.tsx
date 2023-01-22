@@ -17,20 +17,27 @@ const Text = styled.p<ITextProps>`
     h6& {
         font-weight: 800;
         text-transform: lowercase;
-        margin: 0 0 1rem 0;
+        margin: 0 0 16px 0;
     }
 
     pre& {
         font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
         line-height: 1.5;
+        font-size: 16px;
     }
 
     label& {
         text-transform: lowercase;
+        font-size: 16px;
+    }
+
+    span& {
+        font-size: 16px;
     }
 
     p& {
         line-height: 1.5;
+        font-size: 16px;
     }
 
     strong& {

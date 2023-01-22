@@ -69,7 +69,7 @@ const tag = (value: number, selections: number[], midpoint: number, type: string
             return tee(index)
 
         case 'hundreds':
-            return String((index * 100) + 400 );
+            return String(index * 100 + 400)
 
         default:
             return String(index)

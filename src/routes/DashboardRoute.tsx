@@ -2,17 +2,25 @@ import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
 
 import { useRecoilState } from 'recoil'
-import { projectLabelTypeAtom, projectNameAtom } from '../recoil/store'
+import {
+    projectLabelTypeAtom,
+    projectNameAtom,
+    projectPreferredUnitAtom,
+    projectRootSizeAtom,
+    scalesAtomFamily,
+} from '../recoil/store'
 
 import ButtonLink from '../components/elements/ButtonLink'
 import Text from '../components/primitives/Text'
 import FieldSelect from '../components/elements/FieldSelect'
 
 import slugify from '../utilities/slugify'
+import FieldNumber from '../components/elements/FieldNumber'
+import IUnit from '../models/IUnit'
 
-const DashboardRouteWrapper = styled.div``
+const Wrapper = styled.div``
 
-const DashboardRouteContent = styled.div`
+const Content = styled.div`
     max-width: 666px;
     margin: 0 auto;
 `
@@ -23,8 +31,8 @@ const DashboardRouteContent = styled.div`
 //     margin: 0;
 // `
 
-const DashboardRouteFileName = styled(Text)`
-    margin: 0.5rem 0 0;
+const FileName = styled(Text)`
+    margin: 8px 0 0;
     line-height: 1;
 `
 
@@ -43,47 +51,93 @@ const DashboardRouteInput = styled.input.attrs({ type: 'text' })`
     width: 100%;
 `
 
-const DashboardRouteHeader = styled.header`
-    padding: 4rem 0 2rem 0;
+const Header = styled.header`
+    padding: 64px 0 32px 0;
+`
+
+const SettingsContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
 `
 
 const DashboardRoute = () => {
-    const [projectName, setProjectName] = useRecoilState(projectNameAtom)
-    const [projectLabelType, setProjectLabelType] = useRecoilState(projectLabelTypeAtom)
+    const [name, setName] = useRecoilState(projectNameAtom)
+    const [rootSize, setRootSize] = useRecoilState(projectRootSizeAtom)
+    const [labelType, setLabelType] = useRecoilState(projectLabelTypeAtom)
+    const [preferredUnit, setPreferredUnit] = useRecoilState(projectPreferredUnitAtom)
 
-    const onChangeProjectName = (event: ChangeEvent<HTMLInputElement>) => {
-        setProjectName(event.target.value)
+    const [spaceScale, setSpaceScale] = useRecoilState(scalesAtomFamily('space'))
+    const [typeScale, setTypeScale] = useRecoilState(scalesAtomFamily('type'))
+
+    const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value)
     }
 
-    const onChangeProjectLabelType = (event: ChangeEvent<HTMLSelectElement>) => {
-        setProjectLabelType(event.target.value)
+    const onChangeRootSize = (event: ChangeEvent<HTMLInputElement>) => {
+        setRootSize(Number(event.target.value))
+    }
+
+    const onChangeLabelType = (event: ChangeEvent<HTMLSelectElement>) => {
+        setLabelType(event.target.value)
+    }
+
+    const onChangePreferredUnit = (event: ChangeEvent<HTMLSelectElement>) => {
+        const { value } = event.target
+        setPreferredUnit(value)
+
+        const base: IUnit = { value: value === 'px' ? 16 : 1, suffix: value }
+
+        setSpaceScale({ ...spaceScale, base })
+        setTypeScale({ ...typeScale, base })
     }
 
     return (
-        <DashboardRouteWrapper>
-            <DashboardRouteContent>
-                <DashboardRouteHeader>
-                    <DashboardRouteInput value={projectName} onChange={onChangeProjectName} />
-                    <DashboardRouteFileName as={'pre'}>
-                        {slugify(projectName)}.abstracts
-                    </DashboardRouteFileName>
-                </DashboardRouteHeader>
+        <Wrapper>
+            <Content>
+                <Header>
+                    <DashboardRouteInput value={name} onChange={onChangeName} />
+                    <FileName as={'pre'}>{slugify(name)}.abstracts</FileName>
+                </Header>
                 <Text as={'p'}>
                     [I am not 100% sure how I want to design this, so it&apos;ll be like this for a
                     while]
                 </Text>
 
                 <Text as={'h2'}>Settings</Text>
-                <FieldSelect
-                    id={'project-label-type'}
-                    label={'Project Label Type'}
-                    value={projectLabelType}
-                    onChange={onChangeProjectLabelType}
-                >
-                    <option value={'incremental'}>Incremental</option>
-                    <option value={'hundreds'}>Hundreds</option>
-                    <option value={'tee-shirt'}>Tee Shirt</option>
-                </FieldSelect>
+
+                <SettingsContainer>
+                    <FieldSelect
+                        id={'project-preferred-unit'}
+                        label={'Preferred Unit'}
+                        value={preferredUnit}
+                        onChange={onChangePreferredUnit}
+                    >
+                        <option value={'px'}>px</option>
+                        <option value={'rem'}>rem</option>
+                        <option value={'em'}>em</option>
+                    </FieldSelect>
+                    {preferredUnit !== 'px' ? (
+                        <FieldNumber
+                            id={'project-root-size'}
+                            label={'Root Size (px)'}
+                            value={rootSize}
+                            onChange={onChangeRootSize}
+                        />
+                    ) : (
+                        <></>
+                    )}
+                    <FieldSelect
+                        id={'project-label-type'}
+                        label={'Project Label Type'}
+                        value={labelType}
+                        onChange={onChangeLabelType}
+                    >
+                        <option value={'incremental'}>Incremental</option>
+                        <option value={'hundreds'}>Hundreds</option>
+                        <option value={'tee-shirt'}>Tee Shirt</option>
+                    </FieldSelect>
+                </SettingsContainer>
 
                 <Text as={'h2'}>Spacing</Text>
                 <ButtonLink to={'/scale/space'} label={'Scale'} />
@@ -93,10 +147,10 @@ const DashboardRoute = () => {
                 <ButtonLink to={'/'} label={'Settings'} />
                 <ButtonLink to={'/'} label={'Specimens'} />
                 <ButtonLink to={'/'} label={'Rhythm'} />
-            </DashboardRouteContent>
-        </DashboardRouteWrapper>
+            </Content>
+        </Wrapper>
     )
 }
 
 export default DashboardRoute
-export { DashboardRouteWrapper }
+export { Wrapper, Content, Header, FileName }

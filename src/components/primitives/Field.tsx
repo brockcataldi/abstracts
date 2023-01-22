@@ -15,17 +15,18 @@ interface IFieldLabelProps {
 
 const FieldWrapper = styled.div`
     &:not(:last-child) {
-        margin-bottom: 1rem;
+        margin-bottom: 16px;
     }
 `
 
 const FieldLabel = styled.label<IFieldLabelProps>`
     display: block;
+    font-size: 16px;
     ${(props) => {
         const { reader } = props
 
         if (reader !== true) {
-            return `margin-bottom: 0.5rem;`
+            return `margin-bottom: 8px;`
         } else {
             return `height: 1px`
         }

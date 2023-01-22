@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil'
 
 import { scalesAtomFamily } from '../../recoil/store'
 
+import IScale from '../../models/IScale'
 import IUnit from '../../models/IUnit'
 
 import Aside from '../elements/Aside'
@@ -21,17 +22,17 @@ interface IScaleAsideProps {
 
 const ScaleButtonLink = styled(ButtonLink)`
     border: none;
-    margin-bottom: 2rem;
-`;
+    margin-bottom: 32px;
+`
 
 const ScaleAsideTitle = styled(Text)`
     h1& {
-        margin-top: 1rem;
+        margin-top: 16px;
     }
 `
 
 const ScaleAside = ({ variant }: IScaleAsideProps) => {
-    const [scale, setScale] = useRecoilState(scalesAtomFamily(variant))
+    const [scale, setScale] = useRecoilState<IScale>(scalesAtomFamily(variant))
     const [ratio, setRatio] = useState<number | string>(
         [1.067, 1.125, 1.2, 1.25, 1.333, 1.414, 1.5, 1.618].includes(scale.ratio)
             ? scale.ratio

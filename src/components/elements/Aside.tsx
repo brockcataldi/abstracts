@@ -10,7 +10,7 @@ const AsideWrapper = styled.aside`
     width: 300px;
     border-right: 1px solid black;
     height: 100vh;
-    padding: 2rem;
+    padding: 32px;
     box-sizing: border-box;
     position: fixed;
 `

@@ -12,7 +12,7 @@ const DescriptorWrapper = styled.span`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 4px;
 `
 
 const DescriptorText = styled(Text)`

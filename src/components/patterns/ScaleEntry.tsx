@@ -9,6 +9,7 @@ interface IScaleEntryProps {
     nth: number
     type: string
     value: IUnit
+    absoluteValue?: IUnit
     index: number
     checked: boolean
     midpoint: boolean
@@ -23,12 +24,12 @@ const ScaleEntryInput = styled.input`
 const ScaleEntryLabel = styled.label`
     display: grid;
     grid-template-columns: 32px 64px 1fr;
-    gap: 1rem;
+    gap: 16px;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     cursor: pointer;
-    padding: 1rem;
+    padding: 16px;
 `
 
 const ScaleEntryDisplay = styled(Text)`
@@ -44,11 +45,12 @@ interface IScaleEntryMidpointWrapperProps {
 const ScaleEntryMidpointLabel = styled(Text)`
     display: grid;
     place-items: center;
-    padding: 1rem;
+    padding: 16px;
     width: 100%;
     box-sizing: border-box;
     height: 100%;
     cursor: pointer;
+    font-size: 16px;
 `
 
 const ScaleEntryMidpointInput = styled.input`
@@ -86,8 +88,8 @@ interface IScaleEntryWrapperProps {
 }
 
 const ScaleEntryWrapper = styled.div<IScaleEntryWrapperProps>`
-    margin: 1rem 0;
-    border-radius: 0.5rem;
+    margin: 16px 0;
+    border-radius: 4px;
     display: grid;
     overflow: hidden;
 
@@ -140,6 +142,7 @@ const ScaleEntry = ({
     value,
     type,
     index,
+    absoluteValue,
     checked,
     midpoint,
     onChange,
@@ -181,7 +184,10 @@ const ScaleEntry = ({
                 onKeyDown={onKeyDownLabel}
             >
                 <Text as={'span'}>{checked === true ? label : ''}</Text>
-                <Text as={'span'}>{size}</Text>
+                <Text as={'span'}>
+                    {size}{' '}
+                    {absoluteValue !== undefined ? <em>{toString(absoluteValue, 2)}</em> : ''}
+                </Text>
                 {type === 'type' ? (
                     <ScaleEntryDisplay className={'type'} style={{ fontSize: size }}>
                         Lorem Ispum Sit Dolor
