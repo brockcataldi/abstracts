@@ -3,13 +3,15 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 import { useRecoilValue } from 'recoil'
 
+import { projectRootSizeAtom } from './recoil/store'
+
 import App from './App'
 
 import DashboardRoute from './routes/DashboardRoute'
 import IndexRoute from './routes/IndexRoute'
 import InstallRoute from './routes/InstallRoute'
 import ScaleRoute from './routes/ScaleRoute'
-import { projectRootSizeAtom } from './recoil/store'
+import ExportRoute from './routes/ExportRoute'
 
 interface IGlobalStyleProps {
     rootSize: number
@@ -46,6 +48,7 @@ const Root = (): ReactElement => {
                     <Route path='/' element={<App />}>
                         <Route index element={<IndexRoute />} />
                         <Route path={'dashboard'} element={<DashboardRoute />} />
+                        <Route path={'export'} element={<ExportRoute />} />
                         <Route path={'install'} element={<InstallRoute />} />
                         <Route path={'scale'}>
                             <Route path={':variant'} element={<ScaleRoute />} />

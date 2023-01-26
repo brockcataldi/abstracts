@@ -10,13 +10,15 @@ import {
     scalesAtomFamily,
 } from '../recoil/store'
 
+import IUnit from '../models/IUnit'
+
+import FieldNumber from '../components/elements/FieldNumber'
 import ButtonLink from '../components/elements/ButtonLink'
 import Text from '../components/primitives/Text'
 import FieldSelect from '../components/elements/FieldSelect'
 
 import slugify from '../utilities/slugify'
-import FieldNumber from '../components/elements/FieldNumber'
-import IUnit from '../models/IUnit'
+
 
 const Wrapper = styled.div``
 
@@ -36,7 +38,7 @@ const FileName = styled(Text)`
     line-height: 1;
 `
 
-const DashboardRouteInput = styled.input.attrs({ type: 'text' })`
+const ProjectNameInput = styled.input.attrs({ type: 'text' })`
     font-size: 72px;
     line-height: 1;
     font-weight: 800;
@@ -96,7 +98,7 @@ const DashboardRoute = () => {
         <Wrapper>
             <Content>
                 <Header>
-                    <DashboardRouteInput value={name} onChange={onChangeName} />
+                    <ProjectNameInput value={name} onChange={onChangeName} />
                     <FileName as={'pre'}>{slugify(name)}.abstracts</FileName>
                 </Header>
                 <Text as={'p'}>
@@ -122,6 +124,8 @@ const DashboardRoute = () => {
                             id={'project-root-size'}
                             label={'Root Size (px)'}
                             value={rootSize}
+                            min={0}
+                            step={1}
                             onChange={onChangeRootSize}
                         />
                     ) : (
@@ -147,6 +151,9 @@ const DashboardRoute = () => {
                 <ButtonLink to={'/'} label={'Settings'} />
                 <ButtonLink to={'/'} label={'Specimens'} />
                 <ButtonLink to={'/'} label={'Rhythm'} />
+
+                <Text as={'h2'}>Export</Text>
+                <ButtonLink to={'/export'} label={'Export'} />
             </Content>
         </Wrapper>
     )

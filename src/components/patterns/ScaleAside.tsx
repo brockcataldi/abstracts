@@ -8,22 +8,15 @@ import IScale from '../../models/IScale'
 import IUnit from '../../models/IUnit'
 
 import Aside from '../elements/Aside'
-import ButtonLink from '../elements/ButtonLink'
 import FieldNumber from '../elements/FieldNumber'
 import FieldSelect from '../elements/FieldSelect'
 import FieldUnit from '../elements/FieldUnit'
 import Text from '../primitives/Text'
-
-import { ArrowLeft } from '../../assets/icons'
+import Back from '../elements/Back'
 
 interface IScaleAsideProps {
     variant: string
 }
-
-const ScaleButtonLink = styled(ButtonLink)`
-    border: none;
-    margin-bottom: 32px;
-`
 
 const ScaleAsideTitle = styled(Text)`
     h1& {
@@ -58,13 +51,15 @@ const ScaleAside = ({ variant }: IScaleAsideProps) => {
 
     return (
         <Aside>
-            <ScaleButtonLink to={'/dashboard'} label={'Back to the Dashboard'} icon={ArrowLeft} />
+            <Back />
             <ScaleAsideTitle as={'h1'}>{`${variant} Scale`}</ScaleAsideTitle>
             <FieldUnit
                 label={'Base'}
                 value={scale.base}
                 id={'scale-base'}
                 onChange={onChangeBase}
+                min={0}
+                step={scale.base.suffix === 'px' ? 1 : 0.01}
             />
             <FieldSelect label={'Ratio'} value={ratio} onChange={onChangeRatio} id={'scale-ratio'}>
                 <option value={1.067}>1.067 - Minor Second</option>

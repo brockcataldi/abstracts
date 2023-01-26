@@ -13,6 +13,9 @@ interface IFieldUnit {
     label: string
     id: string
     value: IUnit
+    min?: number
+    step?: number
+    max?: number
     onChange: (value: IUnit) => void
 }
 
@@ -38,7 +41,7 @@ const FieldUnitField = styled(Field)`
     }
 `
 
-const FieldUnit = ({ label, id, value, onChange }: IFieldUnit) => {
+const FieldUnit = ({ label, id, min, step, max, value, onChange }: IFieldUnit) => {
     const onChangeValue = (event: ChangeEvent<HTMLInputElement>) => {
         onChange({ ...value, value: Number(event.target.value) })
     }
@@ -54,6 +57,9 @@ const FieldUnit = ({ label, id, value, onChange }: IFieldUnit) => {
                 value={value.value}
                 id={`${id}-unit-value`}
                 reader={true}
+                min={min}
+                step={step}
+                max={max}
                 onChange={onChangeValue}
             />
             <FieldSelect

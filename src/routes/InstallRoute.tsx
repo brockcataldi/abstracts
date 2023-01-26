@@ -5,12 +5,12 @@ import Text from '../components/primitives/Text'
 
 import IGoogleFont, { fromURL, toURL } from '../models/IGoogleFont'
 
-const InstallRouteWrapper = styled.div`
+const Wrapper = styled.div`
     margin: 64px auto;
     max-width: 750px;
 `
 
-const InstallTextArea = styled.textarea`
+const TextArea = styled.textarea`
     width: 100%;
     height: 260px;
     padding: 16px;
@@ -52,15 +52,15 @@ const InstallRoute = () => {
     }, [fonts])
 
     return (
-        <InstallRouteWrapper>
+        <Wrapper>
             <Text as='h1'>Install Google Fonts</Text>
-            <InstallTextArea
+            <TextArea
                 value={links}
                 onChange={onChangeLinks}
                 placeholder={'<link rel="preconnect" href="https://fonts.googleapis.com">...'}
-            ></InstallTextArea>
+            ></TextArea>
             <pre>{JSON.stringify(fonts, null, 4)}</pre>
-        </InstallRouteWrapper>
+        </Wrapper>
     )
 }
 
